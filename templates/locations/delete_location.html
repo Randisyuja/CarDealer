@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Locations</title>
+</head>
+<body>
+    <h2>Delete Locations: {{ location.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Delete Locations</button>
+    </form>
+    <br>
+    <a href="{% url 'locations_list' %}">Back to Locations List</a>  <!-- Ganti dengan URL yang sesuai -->
+</body>
+</html>

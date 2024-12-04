@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands List</title>
+</head>
+<body>
+    <h2>Cars List</h2>
+    <table>
+        <tr>
+            <th>Gambar</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Warna</th>
+            <th>Tahun</th>
+            <th>CC</th>
+            <th>Location</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.car_image }}</td>
+            <td>{{ car.cars_name }}</td>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.warna }}</td>
+            <td>{{ car.tahun }}</td>
+            <td>{{ car.CC }}</td>
+            <td>{{ car.location }}</td>
+            <td>
+                <a href="{% url 'edit_car' car.id_cars %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'delete_car' car.id_cars %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

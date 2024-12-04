@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Brand</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Brand</button>
+    </form>
+    <br>
+    <a href="{% url 'brands_list' %}">Back to Brand List</a>  <!-- Ganti dengan URL yang sesuai -->
+</body>
+</html>
