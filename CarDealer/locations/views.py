@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from CarDealer.locations.forms import LocationCreateForm, LocationDeleteForm, LocationUpdateForm
 from CarDealer.locations.models import Location
+from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def add_location(request):
     if request.method == 'GET':
         form = LocationCreateForm
@@ -21,11 +23,13 @@ def add_location(request):
     return render(request, template_name='locations/add_location.html', context=context)
 
 
+@login_required()
 def locations_list(request):
     locations = Location.objects.all()
     return render(request, template_name='locations/locations_list.html', context={'locations': locations})
 
 
+@login_required()
 def edit_location(request, location_id):
     location = Location.objects.get(id=location_id)
 
@@ -47,6 +51,7 @@ def edit_location(request, location_id):
     return render(request, template_name='locations/edit_location.html', context=context)
 
 
+@login_required()
 def delete_location(request, location_id):
     location = Location.objects.get(id=location_id)
     if request.method == 'GET':

@@ -12,7 +12,7 @@ class Cars(models.Model):
     )
 
     car_image = models.ImageField(
-        upload_to='images',
+        upload_to='images/',
         validators=[validate_file_size],
         null=True,
         blank=True,

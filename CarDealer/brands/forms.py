@@ -3,7 +3,7 @@ from django import forms
 from CarDealer.brands.models import Brands
 
 
-class BrandsBaseForm(forms.ModelForm):
+class BrandBaseForm(forms.ModelForm):
     class Meta:
         model = Brands
         fields = '__all__'
@@ -19,13 +19,13 @@ class BrandsBaseForm(forms.ModelForm):
         }
 
 
-class BrandsCreateForm(BrandsBaseForm):
+class BrandCreateForm(BrandBaseForm):
     pass
 
 
-class BrandsUpdateForm(BrandsBaseForm):
+class BrandUpdateForm(BrandBaseForm):
     pass
 
 
-class BrandsDeleteForm(BrandsBaseForm):
+class BrandDeleteForm(BrandBaseForm):
     pass

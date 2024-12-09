@@ -10,12 +10,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Gambar</th>
                         <th>Name</th>
                         <th>Brand</th>
-                        <th>Warna</th>
-                        <th>Tahun</th>
-                        <th>CC</th>
                         <th>Location</th>
                         <th>Action</th>
                     </tr>
@@ -24,14 +20,11 @@
                     <!-- Data will appear here -->
                     {% for car in cars %}
                     <tr>
-                        <td>{{ car.car_image }}</td>
                         <td>{{ car.cars_name }}</td>
                         <td>{{ car.brand }}</td>
-                        <td>{{ car.warna }}</td>
-                        <td>{{ car.tahun }}</td>
-                        <td>{{ car.CC }}</td>
                         <td>{{ car.location }}</td>
                         <td>
+                            <a href="{% url 'car_detail' car.id_cars %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-eye"></i></a>
                             <a href="{% url 'edit_car' car.id_cars %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="{% url 'delete_car' car.id_cars %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
                         </td>

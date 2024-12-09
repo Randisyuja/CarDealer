@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Product Detail Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Product Image -->
+          <div class="col-md-6">
+            {% if car.car_image %}
+                <img src="{{ car.car_image.name }}" alt="{{ car.cars_name }}">
+            {% else %}
+                <p>No image available.</p>
+            {% endif %}
+          </div>
+          <!-- Product Details -->
+          <div class="col-md-6">
+            <h1 class="mb-3">{{ car.cars_name }}</h1>
+            <p class="text-muted">Category: <span class="text-primary">{{ car.category }}</span></p>
+            <p class="lead">A brief description of the product, highlighting its key features and benefits.</p>
+            <h4 class="text-danger">$499.99</h4>
+            <a href="{% url 'edit_car' car.id_cars %}" class="btn btn-secondary">Edit Car</a>
+            <a href="{% url 'delete_car' car.id_cars %}" class="btn btn-danger">Delete Car</a>
+          </div>
+        </div>
+        <hr class="my-5">
+        <!-- Product Specifications -->
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Specifications</h3>
+            <ul class="specs-list">
+              <li><strong>Display:</strong> 6.5-inch AMOLED</li>
+              <li><strong>Processor:</strong> Octa-core 2.8GHz</li>
+              <li><strong>Battery:</strong> 4500mAh</li>
+              <li><strong>Camera:</strong> 108MP + 12MP + 5MP</li>
+              <li><strong>Storage:</strong> 128GB/256GB</li>
+            </ul>
+          </div>
+          <!-- Customer Reviews -->
+          <div class="col-md-6">
+            <h3>Customer Reviews</h3>
+            <div class="mb-3">
+              <strong>John Doe</strong>
+              <p>"Excellent product! Highly recommend it."</p>
+              <small class="text-muted">5 stars</small>
+            </div>
+            <div class="mb-3">
+              <strong>Jane Smith</strong>
+              <p>"Great value for money. Performance is outstanding."</p>
+              <small class="text-muted">4 stars</small>
+            </div>
+            <a href="#" class="btn btn-outline-primary">Read More Reviews</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

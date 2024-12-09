@@ -2,10 +2,10 @@ from django.urls import path, include
 from CarDealer.brands import views
 
 urlpatterns = [
-    path('', views.brands_list, name='brands_list'),
-    path('add_brand/', views.add_brand, name='add_brand'),
+    path('', views.BrandList.as_view(), name='brands_list'),
+    path('add_brand/', views.AddBrand.as_view(), name='add_brand'),
     path('<int:brand_id>/', include([
-        path('edit_brand/', views.edit_brand, name='edit_brand'),
-        path('delete_brand/', views.delete_brand, name='delete_brand'),
+        path('edit_brand/', views.EditBrand.as_view(), name='edit_brand'),
+        path('delete_brand/', views.DeleteBrand.as_view(), name='delete_brand'),
     ]))
 ]

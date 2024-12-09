@@ -1,65 +1,68 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from CarDealer.categories.forms import CategoryCreateForm, CategoryEditForm, CategoryDeleteForm
 from CarDealer.categories.models import Category
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def add_category(request):
-    if request.method == 'GET':
-        form = CategoryCreateForm
-    else:
+class AddCategory(LoginRequiredMixin, View):
+    def get(self, request):
+        form = CategoryCreateForm()
+        context = {'form': form}
+        return render(request, 'categories/add_category.html', context=context)
+
+    def post(self, request):
         form = CategoryCreateForm(request.POST)
         if form.is_valid():
             form.save()
-
             return redirect('category_list')
-
-    context = {'form': form}
-
-    return render(request, template_name='categories/add_category.html', context=context)
+        context = {'form': form}
+        return render(request, 'categories/add_category.html', context=context)
 
 
-def edit_category(request, category_id):
-    category = get_object_or_404(Category, id=category_id)
+class EditCategory(LoginRequiredMixin, View):
+    def get(self, request, category_id):
+        category = get_object_or_404(Category, id=category_id)
+        form = CategoryEditForm(instance=category)
+        context = {'form': form}
+        return render(request, 'categories/edit_category.html', context=context)
 
-    if request.method == 'POST':
+    def post(self, request, category_id):
+        category = get_object_or_404(Category, id=category_id)
         form = CategoryEditForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('category_list')  # Ganti dengan URL yang sesuai
-    else:
-        form = CategoryEditForm(instance=category)
-
-    context = {
-        'form': form,
-        'category': category
-    }
-
-    return render(request, 'categories/edit_category.html', context=context)
+            return redirect('category_list')
+        context = {
+            'form': form,
+            'category': category
+            }
+        return render(request, 'categories/edit_category.html', context=context)
 
 
-def delete_category(request, category_id):
-    category = get_object_or_404(Category, id=category_id)
+class DeleteCategory(LoginRequiredMixin, View):
+    def get(self, request, category_id):
+        category = get_object_or_404(Category, id=category_id)
+        form = CategoryDeleteForm(instance=category)
+        context = {'form': form}
+        return render(request, 'categories/delete_category.html', context=context)
 
-    if request.method == 'POST':
+    def post(self, request, category_id):
+        category = get_object_or_404(Category, id=category_id)
         form = CategoryDeleteForm(request.POST, instance=category)
-
         if form.is_valid():
             category.delete()
-
             return redirect('category_list')
-
-    else:
-        form = CategoryDeleteForm(instance=category)
-
-    context = {
-        'form': form,
-        'category': category
-    }
-
-    return render(request, 'categories/delete_category.html', context=context)
+        context = {
+            'form': form,
+            'category': category
+            }
+        return render(request, 'categories/delete_category.html', context=context)
 
 
-# views.py
-def category_list(request):
-    categories = Category.objects.all()
-    return render(request, 'categories/category_list.html', {'categories': categories})
+
+class CategoryList(LoginRequiredMixin, ListView):
+    model = Category
+    template_name = 'category_list.html'  # Nama template yang akan digunakan
+    context_object_name = 'categories'

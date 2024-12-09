@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from CarDealer.cars.forms import CarCreateForm, CarUpdateForm, CarDeleteForm
 from CarDealer.cars.models import Cars
 
 
+@login_required()
 def add_car(request):
     if request.method == 'GET':
         form = CarCreateForm()
     else:
-        form = CarCreateForm(request.POST)
+        form = CarCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -22,6 +23,7 @@ def add_car(request):
     return render(request, template_name='cars/add_car.html', context=context)
 
 
+@login_required()
 def edit_car(request, car_id):
     car = Cars.objects.get(id_cars=car_id)
 
@@ -43,6 +45,7 @@ def edit_car(request, car_id):
     return render(request, template_name='cars/edit_car.html', context=context)
 
 
+@login_required()
 def delete_car(request, car_id):
     car = Cars.objects.get(id_cars=car_id)
 
@@ -64,6 +67,20 @@ def delete_car(request, car_id):
     return render(request, template_name='cars/delete_car.html', context=context)
 
 
+@login_required()
 def cars_list(request):
     cars = Cars.objects.all()
     return render(request, template_name='cars/cars_list.html', context={'cars': cars})
+
+
+def car_detail(request, car_id):
+    car = Cars.objects.get(id_cars=car_id)
+    image_url = car.car_image.url
+
+    context = {
+        'car': car,
+        'image_url': image_url
+    }
+
+    return render(request, template_name='cars/car_detail.html', context=context)
+    
