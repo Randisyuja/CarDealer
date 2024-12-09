@@ -1,55 +1,43 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from CarDealer.users.forms import UserRegistrationForm, UserEditForm, UserDeleteForm
-from CarDealer.users.models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from CarDealer.users.forms import SignUpForm, LoginForm
 
 
-def register(request):
+def signup_view(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            return redirect('user_list')  # Ganti dengan URL yang sesuai
+            user = form.save()
+            login(request, user)
+            return redirect('login')  # Ganti dengan URL yang sesuai
     else:
-        form = UserRegistrationForm()
+        form = SignUpForm()
+    return render(request, 'users/signup.html', {'form': form})
 
-    return render(request, 'users/register.html', {'form': form})
 
-
-def edit_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-
+def login_view(request):
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=user)
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('user_list')  # Ganti dengan URL yang sesuai
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')  # Ganti dengan URL yang sesuai
     else:
-        form = UserEditForm(instance=user)
-
-    return render(request, 'users/edit_user.html', {'form': form, 'user': user})
-
-
-def user_list(request):
-    users = User.objects.all()
-    return render(request, 'users/user_list.html', {'users': users})
+        form = LoginForm()
+    return render(request, 'users/login.html', {'form': form})
 
 
-def delete_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    if request.method == 'GET':
-        form = UserDeleteForm(instance=user)
-    else:
-        form = UserDeleteForm(request.POST, instance=user)
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
-        if form.is_valid():
-            user.delete()
 
-            return redirect('user_list')
+def homepage(request):
+    return render(request, template_name='users/homepage.html')
 
-    context = {
-        'form': form,
-        'user': user
-    }
 
-    return render(request, template_name='users/delete_user.html', context=context)
+def about(request):
+    return render(request, template_name='about.html')

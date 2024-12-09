@@ -1,28 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locations List</title>
-</head>
-<body>
-    <h2>Locations List</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        {% for location in locations %}
-        <tr>
-            <td>{{ location.location }}</td>
-            <td>
-                <a href="{% url 'edit_location' location.id %}">Edit</a>
-            </td>
-            <td>
-                <a href="{% url 'delete_location' location.id %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Locations Lists</h1>
+        <!-- Table Section -->
+        <div class="card p-4">
+            <div>
+                <a href="{% url 'add_location' %}" style="text-decoration:none; color:white; border:2px solid grey; border-radius:15px; padding-left:10px; padding-right:10px; background-color: grey">Add Location</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                    <!-- Data will appear here -->
+                    {% for location in locations %}
+                    <tr>
+                        <td>{{ location.location }}</td>
+                        <td>
+                            <a href="{% url 'edit_location' location.id %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{% url 'delete_location' location.id %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

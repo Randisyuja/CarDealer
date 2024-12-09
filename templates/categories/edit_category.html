@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Category</title>
-</head>
-<body>
-    <h2>Edit Category: {{ category.name }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Category</button>
-    </form>
-    <br>
-    <a href="{% url 'category_list' %}">Back to Category List</a>  <!-- Ganti dengan URL yang sesuai -->
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Update Category</h1>
+        <div class="card p-4 mb-4">
+            <h2 class="mb-3">Category Information</h2>
+            <form id="inputForm" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.name.label_tag }}</label>
+                    {{ form.name }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Category</button>
+            </form>
+            <br>
+            <a href="{% url 'category_list' %}" style="text-decoration:none; color:black">Back to Categories List</a>
+        </div>
+    </div>
+{% endblock %}

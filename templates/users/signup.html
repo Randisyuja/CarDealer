@@ -1,0 +1,35 @@
+{% extends 'authbase.html' %}
+{% block content %}
+
+  <!-- Login Form Section -->
+  <section class="py-7">
+    <div class="container">
+      <div class="login-container">
+        <h2 class="text-center mb-4">Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password1" class="form-control" placeholder="Enter your Password" value="{{ form.password1.value }}">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password2" class="form-control" placeholder="Confirm your Password" value="{{ form.password2.value }}">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+        <div class="text-center mt-3">
+          <a href="#" class="text-decoration-none">Forgot Password?</a>
+        </div>
+        <div class="text-center mt-2">
+          <p>Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

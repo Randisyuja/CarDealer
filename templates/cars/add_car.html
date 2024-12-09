@@ -1,17 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Car</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Car</button>
-    </form>
-    <br>
-    <a href="{% url 'cars_list' %}">Back to Cars List</a>  <!-- Ganti dengan URL yang sesuai -->
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Add Car to Garage</h1>
+
+        <!-- Form Section -->
+        <div class="card p-4 mb-4">
+            <h2 class="mb-3">Car Information</h2>
+            <form id="inputForm" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.car_image.label_tag }}</label>
+                    {{ form.car_image }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.cars_name.label_tag }}</label>
+                    {{ form.cars_name }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.brand.label_tag }}</label>
+                    {{ form.brand }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.category.label_tag }}</label>
+                    {{ form.category }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.warna.label_tag }}</label>
+                    {{ form.warna }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.tahun.label_tag }}</label>
+                    {{ form.tahun }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.CC.label_tag }}</label>
+                    {{ form.CC }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.location.label_tag }}</label>
+                    {{ form.location }}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br>
+            <a href="{% url 'cars_list' %}" style="text-decoration:none; color:black">Back to Cars List</a>
+        </div>
+    </div>
+{% endblock %}

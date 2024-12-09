@@ -1,39 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brands List</title>
-</head>
-<body>
-    <h2>Cars List</h2>
-    <table>
-        <tr>
-            <th>Gambar</th>
-            <th>Name</th>
-            <th>Brand</th>
-            <th>Warna</th>
-            <th>Tahun</th>
-            <th>CC</th>
-            <th>Location</th>
-        </tr>
-        {% for car in cars %}
-        <tr>
-            <td>{{ car.car_image }}</td>
-            <td>{{ car.cars_name }}</td>
-            <td>{{ car.brand }}</td>
-            <td>{{ car.warna }}</td>
-            <td>{{ car.tahun }}</td>
-            <td>{{ car.CC }}</td>
-            <td>{{ car.location }}</td>
-            <td>
-                <a href="{% url 'edit_car' car.id_cars %}">Edit</a>
-            </td>
-            <td>
-                <a href="{% url 'delete_car' car.id_cars %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Cars Lists</h1>
+        <!-- Table Section -->
+        <div class="card p-4">
+            <div>
+                <a href="{% url 'add_car' %}" style="text-decoration:none; color:white; border:2px solid grey; border-radius:15px; padding-left:10px; padding-right:10px; background-color: grey">Add Car</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Gambar</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Warna</th>
+                        <th>Tahun</th>
+                        <th>CC</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                    <!-- Data will appear here -->
+                    {% for car in cars %}
+                    <tr>
+                        <td>{{ car.car_image }}</td>
+                        <td>{{ car.cars_name }}</td>
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.warna }}</td>
+                        <td>{{ car.tahun }}</td>
+                        <td>{{ car.CC }}</td>
+                        <td>{{ car.location }}</td>
+                        <td>
+                            <a href="{% url 'edit_car' car.id_cars %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{% url 'delete_car' car.id_cars %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

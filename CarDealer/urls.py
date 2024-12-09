@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from CarDealer.users import views as vu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', vu.homepage, name='home'),
+    path('about/', vu.about, name='about'),
     path('users/', include('CarDealer.users.urls')),
     path('cars/', include('CarDealer.cars.urls')),
     path('categories/', include('CarDealer.categories.urls')),

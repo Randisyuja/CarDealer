@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Locations</title>
-</head>
-<body>
-    <h2>Edit Locations: {{ locations.name }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Locations</button>
-    </form>
-    <br>
-    <a href="{% url 'locations_list' %}">Back to Locations List</a>  <!-- Ganti dengan URL yang sesuai -->
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Edit Location</h1>
+        <div class="card p-4 mb-4">
+            <h2 class="mb-3">Location Information</h2>
+            <form id="inputForm" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.location.label_tag }}</label>
+                    {{ form.location }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Location</button>
+            </form>
+            <br>
+            <a href="{% url 'locations_list' %}" style="text-decoration:none; color:black">Back to Locations List</a>
+        </div>
+    </div>
+{% endblock %}

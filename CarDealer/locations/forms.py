@@ -7,6 +7,12 @@ class LocationBaseForm(forms.ModelForm):
     class Meta:
         model = Location
         fields = '__all__'
+        label = {
+            'location': 'Location Name',
+        }
+        widgets = {
+            'location': forms.TextInput(attrs={'placeholder': "Enter location name", 'class':'form-control'}),
+        }
 
 
 class LocationCreateForm(LocationBaseForm):

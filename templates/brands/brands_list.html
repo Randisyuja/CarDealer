@@ -1,28 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brands List</title>
-</head>
-<body>
-    <h2>Brands List</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        {% for brand in brands %}
-        <tr>
-            <td>{{ brand.name }}</td>
-            <td>
-                <a href="{% url 'edit_brand' brand.id %}">Edit</a>
-            </td>
-            <td>
-                <a href="{% url 'delete_brand' brand.id %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Brands List</h1>
+        <!-- Table Section -->
+        <div class="card p-4">
+            <div>
+                <a href="{% url 'add_brand' %}" style="text-decoration:none; color:white; border:2px solid grey; border-radius:15px; padding-left:10px; padding-right:10px; background-color: grey">Add Brand</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Year Established</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                    <!-- Data will appear here -->
+                    {% for brand in brands %}
+                    <tr>
+                        <td>{{ brand.name }}</td>
+                        <td>{{ brand.year_established }}</td>
+                        <td>
+                            <a href="{% url 'edit_brand' brand.id %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{% url 'delete_brand' brand.id %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
