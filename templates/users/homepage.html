@@ -6,8 +6,8 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h1 class="display-4">Welcome to <br>Car Dealer</h1>
-          <p class="lead">Your one-stop solution for web development and design</p>
+          <h1 class="display-4 mb-3">Welcome to <br>Car Dealer</h1>
+          <p class="lead">Your one-stop solution for perfect vehicle that suits your lifestyle.</p>
           <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
         </div>
         <div class="col-md-6">
@@ -17,31 +17,6 @@
     </div>
   </div>
 
-  <!-- About Section -->
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="text-center">About Us</h2>
-      <p class="text-center">We are a team of passionate developers delivering high-quality web solutions.</p>
-      <div class="row mt-4">
-        <div class="col-md-4 text-center">
-          <img src="https://via.placeholder.com/150" alt="Mission" class="rounded-circle mb-3">
-          <h4>Our Mission</h4>
-          <p>To help businesses achieve their digital goals.</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <img src="https://via.placeholder.com/150" alt="Vision" class="rounded-circle mb-3">
-          <h4>Our Vision</h4>
-          <p>Becoming a leader in web development solutions.</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <img src="https://via.placeholder.com/150" alt="Values" class="rounded-circle mb-3">
-          <h4>Our Values</h4>
-          <p>Commitment, quality, and innovation.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Services Section -->
   <section id="services" class="bg-light py-5">
     <div class="container">
@@ -49,28 +24,28 @@
       <div class="row mt-4">
         <div class="col-md-4">
           <div class="card">
-            <img src="../../Thumbnail.jpeg" class="card-img-top thumbnail" alt="Web Development">
+            <img src="{% static 'images/VehicleSales.jpeg' %}" class="card-img-top thumbnail" alt="Web Development">
             <div class="card-body">
-              <h5 class="card-title">Web Development</h5>
-              <p class="card-text">Building responsive and high-performance websites.</p>
+              <h5 class="card-title">Vehicle Sales</h5>
+              <p class="card-text">Helping you buy new or used cars that fit your needs and budget.</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
-            <img src="https://via.placeholder.com/150" class="card-img-top thumbnail" alt="UI/UX Design">
+            <img src="{% static 'images/Maintenance & Repairs.jpeg' %}" class="card-img-top thumbnail" alt="UI/UX Design">
             <div class="card-body">
-              <h5 class="card-title">UI/UX Design</h5>
-              <p class="card-text">Creating visually stunning and user-friendly interfaces.</p>
+              <h5 class="card-title">Vehicle Maintenance & Repairs</h5>
+              <p class="card-text">Taking care of your car with services like oil changes and repairs.</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="card">
-            <img src="https://via.placeholder.com/150" class="card-img-top thumbnail" alt="SEO Optimization">
+            <img src="{% static 'images\Financing & Leasing.jpeg' %}" class="card-img-top thumbnail" alt="SEO Optimization">
             <div class="card-body">
-              <h5 class="card-title">SEO Optimization</h5>
-              <p class="card-text">Boosting your website's visibility on search engines.</p>
+              <h5 class="card-title">Financing & Leasing</h5>
+              <p class="card-text">Helping you find loan or lease options to make buying a car easier.</p>
             </div>
           </div>
         </div>

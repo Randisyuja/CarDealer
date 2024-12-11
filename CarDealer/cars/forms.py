@@ -14,7 +14,8 @@ class CarBaseForm(forms.ModelForm):
             'warna': 'Warna',
             'tahun': 'Tahun',
             'CC': 'CC',
-            'location': 'Location'
+            'location': 'Location',
+            'description': 'Description'
         }
         widgets = {
             'car_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
@@ -25,6 +26,7 @@ class CarBaseForm(forms.ModelForm):
             'tahun': forms.NumberInput(attrs={'placeholder': "Enter years", 'class':'form-control'}),
             'CC': forms.TextInput(attrs={'placeholder': "Enter CC", 'class':'form-control'}),
             'location': forms.Select(attrs={'placeholder': "Enter car's location", 'class':'form-control'}),
+            'description': forms.Textarea(attrs={'placeholder': "Enter car's description", 'class':'form-control'}),
         }
 
 
@@ -46,4 +48,5 @@ class CarDeleteForm(CarBaseForm):
             'tahun': forms.NumberInput(attrs={'placeholder': "Enter years", 'class':'form-control'}),
             'CC': forms.TextInput(attrs={'placeholder': "Enter CC", 'class':'form-control'}),
             'location': forms.Select(attrs={'placeholder': "Enter car's location", 'class':'form-control'}),
+            'description': forms.TextInput(attrs={'placeholder': "Enter car's description", 'class':'form-control'}),
         }

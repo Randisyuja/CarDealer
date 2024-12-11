@@ -1,9 +1,10 @@
 from django.db import models
 
 from CarDealer.brands.models import Brands
-from CarDealer.cars.validators import validate_file_size
+from CarDealer.cars.validators import validate_file_size, validate_description
 from CarDealer.categories.models import Category
 from CarDealer.locations.models import Location
+
 
 
 class Cars(models.Model):
@@ -14,8 +15,8 @@ class Cars(models.Model):
     car_image = models.ImageField(
         upload_to='images/',
         validators=[validate_file_size],
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
     )
 
     cars_name = models.CharField(
@@ -54,4 +55,10 @@ class Cars(models.Model):
     location = models.ForeignKey(
         Location,
         on_delete=models.CASCADE
+    )
+
+    description = models.TextField(
+        validators=[validate_description],
+        null=False,
+        blank=False,
     )

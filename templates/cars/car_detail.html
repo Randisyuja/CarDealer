@@ -8,7 +8,7 @@
           <!-- Product Image -->
           <div class="col-md-6">
             {% if car.car_image %}
-                <img src="{{ car.car_image.name }}" alt="{{ car.cars_name }}">
+                <img src="{{ car.car_image.url }}" class="img-fluid rounded" style="width: 500px; height: 500px;" alt="{{ car.cars_name }}">
             {% else %}
                 <p>No image available.</p>
             {% endif %}
@@ -17,8 +17,7 @@
           <div class="col-md-6">
             <h1 class="mb-3">{{ car.cars_name }}</h1>
             <p class="text-muted">Category: <span class="text-primary">{{ car.category }}</span></p>
-            <p class="lead">A brief description of the product, highlighting its key features and benefits.</p>
-            <h4 class="text-danger">$499.99</h4>
+            <p class="lead mb-3">{{ car.description }}</p>
             <a href="{% url 'edit_car' car.id_cars %}" class="btn btn-secondary">Edit Car</a>
             <a href="{% url 'delete_car' car.id_cars %}" class="btn btn-danger">Delete Car</a>
           </div>
@@ -35,21 +34,6 @@
               <li><strong>Camera:</strong> 108MP + 12MP + 5MP</li>
               <li><strong>Storage:</strong> 128GB/256GB</li>
             </ul>
-          </div>
-          <!-- Customer Reviews -->
-          <div class="col-md-6">
-            <h3>Customer Reviews</h3>
-            <div class="mb-3">
-              <strong>John Doe</strong>
-              <p>"Excellent product! Highly recommend it."</p>
-              <small class="text-muted">5 stars</small>
-            </div>
-            <div class="mb-3">
-              <strong>Jane Smith</strong>
-              <p>"Great value for money. Performance is outstanding."</p>
-              <small class="text-muted">4 stars</small>
-            </div>
-            <a href="#" class="btn btn-outline-primary">Read More Reviews</a>
           </div>
         </div>
       </div>

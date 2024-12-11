@@ -73,13 +73,12 @@ def cars_list(request):
     return render(request, template_name='cars/cars_list.html', context={'cars': cars})
 
 
+@login_required()
 def car_detail(request, car_id):
     car = Cars.objects.get(id_cars=car_id)
-    image_url = car.car_image.url
 
     context = {
         'car': car,
-        'image_url': image_url
     }
 
     return render(request, template_name='cars/car_detail.html', context=context)
