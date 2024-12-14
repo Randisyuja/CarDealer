@@ -4,6 +4,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 class SignUpForm(UserCreationForm):
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Enter your Password',
+            'class': 'form-control'
+        })
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Confirm your Password',
+            'class': 'form-control'
+        })
+    )
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
