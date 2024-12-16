@@ -17,7 +17,7 @@
           <div class="col-md-6">
             <h1 class="mb-3">{{ car.cars_name }}</h1>
             <p class="text-muted">Category: <span class="text-primary">{{ car.category }}</span></p>
-            <p class="lead mb-3">{{ car.description }}</p>
+            <p class="lead mb-4">{{ car.description }}</p>
             <a href="{% url 'edit_car' car.id_cars %}" class="btn btn-secondary">Edit Car</a>
             <a href="{% url 'delete_car' car.id_cars %}" class="btn btn-danger">Delete Car</a>
           </div>

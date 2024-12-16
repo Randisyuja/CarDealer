@@ -9,7 +9,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=RoleChoice, default=RoleChoice.User)
 
     def save(self, *args, **kwargs):
-        # Pastikan hanya superuser yang dapat mengubah peran
-        if self.pk and not self.is_superuser and self.role != self.__class__.objects.get(pk=self.pk).role:
-            raise ValidationError("You are not allowed to change the user role.")
+        request = kwargs.pop('request', None)  # Ambil request dari kwargs
+        if request and not request.user.is_superuser:
+            raise ValidationError("Only superusers can modify this field.")
         super().save(*args, **kwargs)

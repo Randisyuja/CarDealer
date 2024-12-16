@@ -14,7 +14,5 @@ class Brands(models.Model):
         blank=False,
     )
 
-    description = models.TextField()
-
     def __str__(self):
         return self.name

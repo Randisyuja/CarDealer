@@ -4,9 +4,12 @@ from CarDealer.brands.models import Brands
 from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from CarDealer.users.decorators import role_required
 
 
 class AddBrand(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request):
         form = BrandCreateForm()
         context = {'form': form}
@@ -22,6 +25,7 @@ class AddBrand(LoginRequiredMixin, View):
 
 
 class EditBrand(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request, brand_id):
         brand = get_object_or_404(Brands, id=brand_id)
         form = BrandUpdateForm(instance=brand)
@@ -42,6 +46,7 @@ class EditBrand(LoginRequiredMixin, View):
 
 
 class DeleteBrand(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request, brand_id):
         brand = get_object_or_404(Brands, id=brand_id)
         form = BrandDeleteForm(instance=brand)

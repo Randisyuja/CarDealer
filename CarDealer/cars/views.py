@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from CarDealer.cars.forms import CarCreateForm, CarUpdateForm, CarDeleteForm
 from CarDealer.cars.models import Cars
+from CarDealer.users.decorators import role_required
 
 
+@role_required(['Admin', 'Staff'])
 @login_required()
 def add_car(request):
     if request.method == 'GET':
@@ -23,6 +25,7 @@ def add_car(request):
     return render(request, template_name='cars/add_car.html', context=context)
 
 
+@role_required(['Admin', 'Staff'])
 @login_required()
 def edit_car(request, car_id):
     car = Cars.objects.get(id_cars=car_id)
@@ -45,6 +48,7 @@ def edit_car(request, car_id):
     return render(request, template_name='cars/edit_car.html', context=context)
 
 
+@role_required(['Admin', 'Staff'])
 @login_required()
 def delete_car(request, car_id):
     car = Cars.objects.get(id_cars=car_id)

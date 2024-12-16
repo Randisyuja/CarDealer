@@ -4,9 +4,12 @@ from CarDealer.categories.forms import CategoryCreateForm, CategoryEditForm, Cat
 from CarDealer.categories.models import Category
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.utils.decorators import method_decorator
+from CarDealer.users.decorators import role_required
+    
 
 class AddCategory(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request):
         form = CategoryCreateForm()
         context = {'form': form}
@@ -22,6 +25,7 @@ class AddCategory(LoginRequiredMixin, View):
 
 
 class EditCategory(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request, category_id):
         category = get_object_or_404(Category, id=category_id)
         form = CategoryEditForm(instance=category)
@@ -42,6 +46,7 @@ class EditCategory(LoginRequiredMixin, View):
 
 
 class DeleteCategory(LoginRequiredMixin, View):
+    @method_decorator(role_required(['Admin', 'Staff']))
     def get(self, request, category_id):
         category = get_object_or_404(Category, id=category_id)
         form = CategoryDeleteForm(instance=category)

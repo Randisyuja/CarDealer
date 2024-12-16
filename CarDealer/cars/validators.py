@@ -9,5 +9,5 @@ def validate_file_size(image_object):
 def validate_description(value):
     if len(value) < 10:
         raise ValidationError('Deskripsi harus memiliki minimal 10 karakter.')
-    if len(value) > 200:
-        raise ValidationError('Deskripsi tidak boleh lebih dari 200 karakter.')
+    if len(value) > 300:
+        raise ValidationError('Deskripsi tidak boleh lebih dari 300 karakter.')
