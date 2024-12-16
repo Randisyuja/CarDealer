@@ -9,7 +9,7 @@ from CarDealer.users.decorators import role_required
 
 
 class AddBrand(LoginRequiredMixin, View):
-    @method_decorator(role_required(['Admin', 'Staff']))
+    @method_decorator(role_required(['Admin']))
     def get(self, request):
         form = BrandCreateForm()
         context = {'form': form}
@@ -46,7 +46,7 @@ class EditBrand(LoginRequiredMixin, View):
 
 
 class DeleteBrand(LoginRequiredMixin, View):
-    @method_decorator(role_required(['Admin', 'Staff']))
+    @method_decorator(role_required(['Admin']))
     def get(self, request, brand_id):
         brand = get_object_or_404(Brands, id=brand_id)
         form = BrandDeleteForm(instance=brand)

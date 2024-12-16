@@ -5,7 +5,7 @@ from CarDealer.cars.models import Cars
 from CarDealer.users.decorators import role_required
 
 
-@role_required(['Admin', 'Staff'])
+@role_required(['Admin'])
 @login_required()
 def add_car(request):
     if request.method == 'GET':
@@ -48,7 +48,7 @@ def edit_car(request, car_id):
     return render(request, template_name='cars/edit_car.html', context=context)
 
 
-@role_required(['Admin', 'Staff'])
+@role_required(['Admin'])
 @login_required()
 def delete_car(request, car_id):
     car = Cars.objects.get(id_cars=car_id)

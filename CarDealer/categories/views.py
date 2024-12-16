@@ -9,7 +9,7 @@ from CarDealer.users.decorators import role_required
     
 
 class AddCategory(LoginRequiredMixin, View):
-    @method_decorator(role_required(['Admin', 'Staff']))
+    @method_decorator(role_required(['Admin']))
     def get(self, request):
         form = CategoryCreateForm()
         context = {'form': form}
@@ -46,7 +46,7 @@ class EditCategory(LoginRequiredMixin, View):
 
 
 class DeleteCategory(LoginRequiredMixin, View):
-    @method_decorator(role_required(['Admin', 'Staff']))
+    @method_decorator(role_required(['Admin']))
     def get(self, request, category_id):
         category = get_object_or_404(Category, id=category_id)
         form = CategoryDeleteForm(instance=category)

@@ -4,6 +4,9 @@ from CarDealer.users.forms import SignUpForm, LoginForm
 
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')  # Redirect ke homepage jika sudah login
+        
     if request.method == 'POST':
         form = SignUpForm(request.POST)  # Correct usage
         if form.is_valid():
@@ -16,6 +19,9 @@ def signup_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')  # Redirect ke homepage jika sudah login
+
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():

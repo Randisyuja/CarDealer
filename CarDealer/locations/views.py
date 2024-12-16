@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from CarDealer.users.decorators import role_required
 
 
-@role_required(['Admin', 'Staff'])
+@role_required(['Admin'])
 @login_required()
 def add_location(request):
     if request.method == 'GET':
@@ -54,7 +54,7 @@ def edit_location(request, location_id):
     return render(request, template_name='locations/edit_location.html', context=context)
 
 
-@role_required(['Admin', 'Staff'])
+@role_required(['Admin'])
 @login_required()
 def delete_location(request, location_id):
     location = Location.objects.get(id=location_id)
