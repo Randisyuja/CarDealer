@@ -5,7 +5,9 @@
         <!-- Table Section -->
         <div class="card p-4">
             <div>
-                <a href="{% url 'add_category' %}" style="text-decoration:none; color:white; border:2px solid grey; border-radius:15px; padding-left:10px; padding-right:10px; background-color: grey">Add Category</a>
+                {% if user.is_superuser %}
+                    <a href="{% url 'add_category' %}" style="text-decoration:none; color:white; border:2px solid grey; border-radius:15px; padding-left:10px; padding-right:10px; background-color: grey">Add Category</a>
+                {% endif %}
             </div>
             <table class="table table-striped">
                 <thead>
@@ -21,7 +23,9 @@
                         <td>{{ category.name }}</td>
                         <td>
                             <a href="{% url 'edit_category' category.id %}" style="color:black; margin-right:10px;"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="{% url 'delete_category' category.id %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
+                            {% if user.is_superuser %}
+                                <a href="{% url 'delete_category' category.id %}" style="color:red"><i class="fa-solid fa-trash"></i></a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

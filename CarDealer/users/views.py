@@ -1,6 +1,38 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from CarDealer.users.forms import SignUpForm, LoginForm
+from CarDealer.users.forms import SignUpForm, LoginForm, ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
+
+from django.core.mail import send_mail
+from django.shortcuts import render
+from django.conf import settings
+from .forms import ContactForm
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Ambil data dari form
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            # Kirim email
+            send_mail(
+                subject=f"Contact Form Submission from {name}",
+                message=f"Message:\n{message}\n\nFrom: {name} ({email})",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=['randijordan8@gmail.com'],  # Email tujuan
+                fail_silently=False,
+            )
+            # Kirim ke template untuk menampilkan popup sukses
+            return render(request, 'users/contact.html', {'form': ContactForm(), 'success': True})
+    else:
+        form = ContactForm()
+    
+    return render(request, 'users/contact.html', {'form': form})
+
 
 
 def signup_view(request):

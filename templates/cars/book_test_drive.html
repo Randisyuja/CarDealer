@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Book a Test Drive</h1>
+
+        <!-- Form Section -->
+        <div class="card p-4 mb-4">
+            <h2 class="mb-4">Test Drive Information</h2>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <img src="{{ car.car_image.url }}" class="img-fluid rounded" style="width: 250px; height: 250px; margin-left: 10%" alt="{{ car.cars_name }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <label for="car" class="form-label">{{ form.car.label_tag }}</label>
+                        <p class="rounded" style="border:1px solid #DEE2E6; padding:7px;">{{ car.cars_name }}</p>
+                    </div>
+                    <form id="inputForm" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="car" value="{{ car.id_cars }}" hidden>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="user" value="{{ user.id }}" hidden>
+                        </div>
+                        <div class="mb-4">
+                            <label for="test_drive_date" class="form-label">{{ form.test_drive_date.label_tag }}</label>
+                            {{ form.test_drive_date }}
+                        </div>
+
+                        <div class="mb-3" hidden>
+                            {{ form.status }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Book Test Drive</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <a href="{% url 'cars_list' %}" style="text-decoration:none; color:black">Back to Cars List</a>
+        </div>
+    </div>
+    
+{% endblock %}

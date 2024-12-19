@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Update Test Drive Order</h1>
+
+        <!-- Form Section -->
+        <div class="card p-4 mb-4">
+            <h2 class="mb-4">Test Drive Information</h2>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <img src="{{ car.car_image.url }}" class="img-fluid rounded" style="width: 250px; height: 250px; margin-left: 10%" alt="{{ car.cars_name }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <label for="car" class="form-label">Test Drive ID</label>
+                        <p class="rounded" style="border:1px solid #DEE2E6; padding:7px;">{{ test_drive.id }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="car" class="form-label">Car</label>
+                        <input class="form-control" type="text" name="car" value="{{ test_drive.car }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user" class="form-label">Client Name</label>
+                        <input class="form-control" type="text" name="user" value="{{ test_drive.user }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="test_drive_date" class="form-label">Date</label>
+                        <input class="form-control" type="text" name="testdrivedate" value="{{ test_drive.test_drive_date }}" readonly>
+                    </div>
+                    <form id="inputForm" method="post">
+                        {% csrf_token %}
+                        <label class="form-label" for="status">Status:</label>
+                        <select class="form-control" name="status" id="status">
+                            <option value="Pending" {% if test_drive.status == "Pending" %}selected{% endif %}>Pending</option>
+                            <option value="Confirmed" {% if test_drive.status == "Confirmed" %}selected{% endif %}>Confirmed</option>
+                            <option value="Completed" {% if test_drive.status == "Completed" %}selected{% endif %}>Completed</option>
+                            <option value="Cancelled" {% if test_drive.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
+                        </select><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <a href="{% url 'test_drive_list' %}" style="text-decoration:none; color:black">Back to Test Drive List</a>
+        </div>
+    </div>
+
+{% endblock %}

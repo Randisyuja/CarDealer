@@ -1,5 +1,6 @@
 from django import forms
-from CarDealer.cars.models import Cars
+from CarDealer.cars.models import Cars, TestDrive
+from CarDealer.users.models import User
 
 
 class CarBaseForm(forms.ModelForm):
@@ -50,3 +51,26 @@ class CarDeleteForm(CarBaseForm):
             'location': forms.Select(attrs={'placeholder': "Enter car's location", 'class':'form-control'}),
             'description': forms.TextInput(attrs={'placeholder': "Enter car's description", 'class':'form-control'}),
         }
+
+
+class TestDriveBaseForm(forms.ModelForm):
+    class Meta:
+        model = TestDrive
+        fields = '__all__'
+        label = {
+
+        }
+        widgets = {
+            'car': forms.TextInput(attrs={'placeholder': "Enter car's name", 'class':'form-control', 'readonly': True}),
+            'user': forms.TextInput(attrs={'placeholder': "Enter car's name", 'class':'form-control'}),
+            'test_drive_date': forms.TextInput(attrs={'type': 'date', 'class':'form-control'}),
+            'status': forms.Select(attrs={'placeholder': "Enter years", 'class':'form-control'}),
+        }
+
+       
+class TestDriveForm(TestDriveBaseForm):
+    pass
+
+
+class TestDriveUpdateForm(TestDriveBaseForm):
+    pass

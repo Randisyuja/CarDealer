@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="mt-4" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup notifikasi -->
+    <div id="popup" class="popup">
+        <p>Your message has been sent successfully!</p>
+    </div>
+
+    <script>
+    {% if success %}
+        // Menampilkan popup jika pengiriman berhasil
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+        
+        // Menggunakan animasi untuk memudar popup setelah 3 detik
+        setTimeout(function() {
+            popup.style.opacity = 0;
+            // Menyembunyikan popup setelah animasi selesai
+            setTimeout(function() {
+                popup.style.display = "none";
+                popup.style.opacity = 1; // Reset opacity untuk popup berikutnya
+            }, 300); // Waktu animasi
+        }, 3000); // Popup muncul selama 3 detik
+    {% endif %}
+</script>
+
+{% endblock %}

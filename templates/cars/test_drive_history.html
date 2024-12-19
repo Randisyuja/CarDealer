@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container mt-4 pt-2">
+        <h1 class="text-center mb-4">Test Drive History Lists</h1>
+        <!-- Table Section -->
+        <div class="card p-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Mobil</th>
+                            <th>User</th>
+                            <th>Tanggal Test Drive</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                    <!-- Data will appear here -->
+                    {% for test_drive in test_drives %}
+                    <tr>
+                        <td>{{ test_drive.id }}</td>
+                        <td>{{ test_drive.car }}</td>
+                        <td>{{ test_drive.user }}</td>
+                        <td>{{ test_drive.test_drive_date }}</td>
+                        <td>{{ test_drive.status }}</td>
+                        <td>
+                            <a href="{% url 'edit_test_drive_status' test_drive.id %}" class="btn btn-primary btn-sm">
+                                Update Status
+                            </a>
+                        </td>                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

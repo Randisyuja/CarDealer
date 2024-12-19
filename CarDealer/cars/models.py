@@ -4,6 +4,7 @@ from CarDealer.brands.models import Brands
 from CarDealer.cars.validators import validate_file_size, validate_description
 from CarDealer.categories.models import Category
 from CarDealer.locations.models import Location
+from CarDealer.users.models import User
 
 
 
@@ -62,3 +63,26 @@ class Cars(models.Model):
         null=False,
         blank=False,
     )
+
+    def __str__(self):
+        return self.cars_name
+
+
+class TestDrive(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Confirmed', 'Confirmed'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    ]
+
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    test_drive_date = models.DateField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Test Drive {self.id} for {self.car} by {self.user}"
+
