@@ -21,7 +21,7 @@ Website ini dirancang untuk memberikan layanan lengkap bagi dealer mobil, termas
 ## Teknologi yang Digunakan
 - **Backend**: Django Framework (Python)
 - **Frontend**: Bootstrap 5, HTML, CSS, dan JavaScript
-- **Database**: SQLite (dapat ditingkatkan ke PostgreSQL atau MySQL)
+- **Database**: PostgreSQL
 - **Library Pendukung**: 
   - FontAwesome untuk ikon
   - Django Signals untuk penghapusan file otomatis
