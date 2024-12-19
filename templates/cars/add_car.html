@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container mt-4 pt-2">
-        <h1 class="text-center mb-4">Add Car to Garage</h1>
+        <h1 class="text-center mb-4">Add Car to Dealer</h1>
 
         <!-- Form Section -->
         <div class="card p-4 mb-4">
@@ -35,6 +35,10 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">{{ form.CC.label_tag }}</label>
                     {{ form.CC }}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.price.label_tag }}</label>
+                    {{ form.price }}
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">{{ form.location.label_tag }}</label>

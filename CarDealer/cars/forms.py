@@ -15,6 +15,7 @@ class CarBaseForm(forms.ModelForm):
             'warna': 'Warna',
             'tahun': 'Tahun',
             'CC': 'CC',
+            'price': 'Price',
             'location': 'Location',
             'description': 'Description'
         }
@@ -26,6 +27,7 @@ class CarBaseForm(forms.ModelForm):
             'warna': forms.TextInput(attrs={'placeholder': "Enter car's color", 'class':'form-control'}),
             'tahun': forms.NumberInput(attrs={'placeholder': "Enter years", 'class':'form-control'}),
             'CC': forms.TextInput(attrs={'placeholder': "Enter CC", 'class':'form-control'}),
+            'price': forms.NumberInput(attrs={'placeholder': "Enter price", 'class':'form-control'}),
             'location': forms.Select(attrs={'placeholder': "Enter car's location", 'class':'form-control'}),
             'description': forms.Textarea(attrs={'placeholder': "Enter car's description", 'class':'form-control'}),
         }
@@ -48,7 +50,8 @@ class CarDeleteForm(CarBaseForm):
             'warna': forms.TextInput(attrs={'placeholder': "Enter car's color", 'class':'form-control'}),
             'tahun': forms.NumberInput(attrs={'placeholder': "Enter years", 'class':'form-control'}),
             'CC': forms.TextInput(attrs={'placeholder': "Enter CC", 'class':'form-control'}),
-            'location': forms.Select(attrs={'placeholder': "Enter car's location", 'class':'form-control'}),
+            'price': forms.NumberInput(attrs={'placeholder': "Enter years", 'class':'form-control'}),
+            'location': forms.Select(attrs={'placeholder': "Enter car's price", 'class':'form-control'}),
             'description': forms.TextInput(attrs={'placeholder': "Enter car's description", 'class':'form-control'}),
         }
 

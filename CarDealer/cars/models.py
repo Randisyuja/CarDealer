@@ -53,6 +53,11 @@ class Cars(models.Model):
         blank=False,
     )
 
+    price = models.IntegerField(
+        null=False,
+        blank=False
+    )
+
     location = models.ForeignKey(
         Location,
         on_delete=models.CASCADE
